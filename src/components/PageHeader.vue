@@ -19,4 +19,7 @@ header {
   display: grid;
   place-items: center;
 }
+h1 {
+  font-size: 30px;
+}
 </style>

@@ -16,11 +16,10 @@ export default {
     },
   },
   methods: {
+    // on click, the login token cookie will be removed and the page will reload, logging out the user
     logOutFunction: function () {
-      console.log("log out function");
       cookies.remove("token");
       location.reload();
-      // cookies.VueCookies
     },
   },
 };

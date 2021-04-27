@@ -4,6 +4,8 @@ import Login from '../views/Login.vue'
 import Game from '../views/Game.vue'
 Vue.use(VueRouter)
 
+// the login page will be the homepage
+// set game as a view
 const routes = [
   {
     path: '/',
@@ -13,9 +15,6 @@ const routes = [
   {
     path: '/game',
     name: 'Game',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: Game,
   }
 ]

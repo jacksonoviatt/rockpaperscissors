@@ -9,6 +9,14 @@
 <script>
 export default {
   name: "game-buttons",
+  data() {
+    return {
+      tieMessage: "It's a tie!",
+      winMessage: "You won!",
+      lossMessage: "You lost!",
+    };
+  },
+  // set the states from the store 
   computed: {
     storeChoseRock() {
       return this.$store.state.choseRock;
@@ -30,6 +38,9 @@ export default {
     },
   },
   methods: {
+    // these functions will be called on click
+    // when called, they will update the state of the boolean choice variables
+    // it will also call the computer selection function
     rockClicked: function () {
       this.$store.commit("updateRockChose", true);
       this.$store.commit("updatePaperChose", false);
@@ -48,7 +59,12 @@ export default {
       this.$store.commit("updateScissorsChose", true);
       this.computerSelection();
     },
+
+
     computerSelection: function () {
+      // the computer selection will be 0, 1, or 2
+      // 0 = rock,  1 =  paper, 2 = scissors
+      // the computer choice values will update in the store
       let computerSelection = Math.floor(Math.random() * 3);
       console.log(computerSelection);
       if (computerSelection === 0) {
@@ -64,59 +80,35 @@ export default {
         this.$store.commit("updatePaperComputer", false);
         this.$store.commit("updateScissorsComputer", true);
       }
+      // depending on the outcome of the player and computer choices
+      // the winnerStatement in the store will update with a tie, win, or loss message 
+      // the win loss tie score in the store will also update accordingly
       if (computerSelection === 0 && this.storeChoseRock === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Rock and rock! its a tie!"
-        );
+        this.$store.commit("updateWinnerStatement", this.tieMessage);
         this.$store.commit("updateTieScore", this.storeTieScore + 1);
       } else if (computerSelection === 0 && this.storeChosePaper === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Paper beats rock! you won!"
-        );
+        this.$store.commit("updateWinnerStatement", this.winMessage);
         this.$store.commit("updatePlayerScore", this.storePlayerScore + 1);
       } else if (computerSelection === 0 && this.storeChoseScissors === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Rock beats scissors! you lost!"
-        );
+        this.$store.commit("updateWinnerStatement", this.lossMessage);
         this.$store.commit("updateComputerScore", this.storeComputerScore + 1);
       } else if (computerSelection === 1 && this.storeChoseRock === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Paper beats rock. You lost!"
-        );
+        this.$store.commit("updateWinnerStatement", this.lossMessage);
         this.$store.commit("updateComputerScore", this.storeComputerScore + 1);
       } else if (computerSelection === 1 && this.storeChosePaper === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Paper and paper! Its a tie!"
-        );
+        this.$store.commit("updateWinnerStatement", this.tieMessage);
         this.$store.commit("updateTieScore", this.storeTieScore + 1);
       } else if (computerSelection === 1 && this.storeChoseScissors === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Scissors beat paper! You won!"
-        );
+        this.$store.commit("updateWinnerStatement", this.winMessage);
         this.$store.commit("updatePlayerScore", this.storePlayerScore + 1);
       } else if (computerSelection === 2 && this.storeChoseRock === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Rock beats scissors. You won!"
-        );
+        this.$store.commit("updateWinnerStatement", this.winMessage);
         this.$store.commit("updatePlayerScore", this.storePlayerScore + 1);
       } else if (computerSelection === 2 && this.storeChosePaper === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Scissors beat paper! You lost!"
-        );
+        this.$store.commit("updateWinnerStatement", this.lossMessage);
         this.$store.commit("updateComputerScore", this.storeComputerScore + 1);
       } else if (computerSelection === 2 && this.storeChoseScissors === true) {
-        this.$store.commit(
-          "updateWinnerStatement",
-          "Scissors and scissors! Its a tie!"
-        );
+        this.$store.commit("updateWinnerStatement", this.tieMessage);
         this.$store.commit("updateTieScore", this.storeTieScore + 1);
       }
     },
@@ -125,4 +117,19 @@ export default {
 </script>
 
 <style scoped>
+button {
+  background: white;
+  border: grey 2px solid;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0 20px;
+  min-width: 200px;
+  height: 60px;
+  border-radius: 10px;
+}
+button:hover {
+  background: rgb(192, 192, 192);
+  
+}
 </style>

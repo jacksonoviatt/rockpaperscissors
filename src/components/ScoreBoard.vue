@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h1>Player: {{ storePlayerScore }}</h1>
-    <h1>Ties: {{ storeTieScore }}</h1>
-    <h1>Computer: {{ storeComputerScore }}</h1>
+    <!-- in the mustache syntax, the stored scores will update and display  -->
+    <h2>Player: {{ storePlayerScore }}</h2>
+    <h2>Ties: {{ storeTieScore }}</h2>
+    <h2>Computer: {{ storeComputerScore }}</h2>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 export default {
   name: "score-board",
   computed: {
+    //  pull the stored scores from the vuex store 
     storePlayerScore() {
       return this.$store.state.playerScore;
     },

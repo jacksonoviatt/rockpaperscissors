@@ -4,6 +4,8 @@ import cookies from "vue-cookies"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  // set the global variables
+  // loginToken gets the cookie token
   state: {
     choseRock: false,
     choseScissors: false,
@@ -20,6 +22,7 @@ export default new Vuex.Store({
     loginToken: cookies.get("token"),
 
   },
+  // mutations change the state of the above data
   mutations: {
     updateRockChose: function(state, data) {
       state.choseRock = data;
@@ -40,9 +43,11 @@ export default new Vuex.Store({
     updateScissorsComputer: function(state, data) {
       state.computerScissors = data;
     },
+
     updateWinnerStatement: function(state, data) {
       state.winnerStatement = data;
     },
+
     updatePlayerScore: function(state, data) {
       state.playerScore = data;
     },
@@ -56,6 +61,6 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: {
+  getters: {
   }
 })
